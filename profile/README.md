@@ -1,4 +1,4 @@
-# Baseten on GitHub
+# Welcome to Baseten
 
 [Baseten](https://baseten.co) is the MLOps platform for startups to rapidly develop, deploy, and test models in production. Baseten makes it simple to serve your machine learning models, integrate with custom business logic, and design powerful web apps for business users, all without configuring any infrastructure or writing any JavaScript. API endpoints, release management, and scalability all come out of the box, and model deployment workflows are powered by our open-source packaging library, [Truss](https://truss.baseten.co).
 
