@@ -1,22 +1,23 @@
 # Welcome to Baseten
 
-[Baseten](https://baseten.co) is the MLOps platform for startups to rapidly develop, deploy, and test models in production. Baseten makes it simple to serve your machine learning models, integrate with custom business logic, and design powerful web apps for business users, all without configuring any infrastructure or writing any JavaScript. API endpoints, release management, and scalability all come out of the box, and model deployment workflows are powered by our open-source packaging library, [Truss](https://truss.baseten.co).
+Baseten is the machine learning infrastructure platform to serve models of any size and modality and do so performantly, scalably, and affordably for production use cases.
 
-Read our [getting started guide](https://docs.baseten.co/getting-started) for an overview of the platform and an opinionated reference architecture.
+Get started:
+
+* Deploy a foundation model in two clicks from the [model library](https://app.baseten.co/explore)
+* Read our [quickstart guide](https://docs.baseten.co/quickstart) to package and serve a model in under five minutes.
 
 ## Truss
 
-Truss is a seamless bridge from model development to model delivery. Truss presents an open-source standard for packaging models built in any framework for sharing and deployment in any environment, local or production.
+Truss, an open-source project by Baseten, is the simplest way to serve AI/ML models in production.
 
-![Truss](https://3725346726-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FdxuQxRFqBB9Vmf0Ze8I2%2Fuploads%2Fgit-blob-52eed6e739ba12f4cb171606c74ad048e428109f%2Ftruss_unify.png?alt=media)
+Why Truss?
 
-Truss is open source under the MIT license.
+* **Write once, run anywhere:** Package and test model code, weights, and dependencies with a model server that behaves the same in development and production.
+* **Fast developer loop:** Implement your model with fast feedback from a live reload server, and skip Docker and Kubernetes configuration with Truss' done-for-you model serving environment.
+* **Support for all Python frameworks**: From `transformers` and `diffusors` to `PyTorch` and `Tensorflow` to `XGBoost` and `sklearn`, Truss supports models created with any framework, even entirely custom models.
 
-- [Truss on GitHub](https://github.com/basetenlabs/truss)
+Get started:
+
+- [Truss on GitHub](https://trussml.com)
 - [Truss documentation](https://truss.baseten.co)
-
-## Demos
-
-Our repository of public demos includes notebooks for deploying models trained in a variety of frameworks. Each notebook is runnable in Google Colab.
-
-[View demos](https://github.com/basetenlabs/demos).
