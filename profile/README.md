@@ -4,8 +4,8 @@ Baseten is the machine learning infrastructure platform to serve models of any s
 
 Get started:
 
-* Deploy a foundation model in two clicks from the [model library](https://app.baseten.co/explore)
-* Read our [quickstart guide](https://docs.baseten.co/quickstart) to package and serve a model in under five minutes.
+* Deploy a foundation model like [Mistral 7B](https://www.baseten.co/library/mistral-7b-instruct/) or [Stable Diffusion XL](https://www.baseten.co/library/stable-diffusion-xl/) in two clicks from the [model library](https://www.baseten.co/library/)
+* Read our [quickstart guide](https://truss.baseten.co/quickstart) to package and serve a model in under five minutes.
 
 ## Truss
 
