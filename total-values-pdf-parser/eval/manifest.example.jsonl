@@ -1,0 +1,2 @@
+{"id": "example-arxiv-single", "pdf_url": "https://arxiv.org/pdf/1706.03762.pdf", "expected_page_count": null, "notes": "Public mechanical fixture only (Attention Is All You Need). Not a Total Values quality gate."}
+{"id": "example-placeholder-fail", "pdf_url": "https://example.com/this-is-not-a-real-pdf.pdf", "expected_page_count": null, "notes": "Expected download/invalid failure for mixed-batch mechanical tests."}

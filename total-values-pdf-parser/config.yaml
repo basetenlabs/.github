@@ -1,0 +1,62 @@
+model_name: total-values-pdf-parser
+description: >
+  Batch PDF parser for Total Values. Accepts authorized PDF URLs and returns
+  page-aware Markdown for downstream selection/extraction models. Does not
+  accept prompts, schemas, or perform field extraction.
+
+python_version: py312
+
+# Blackwell-compatible PyTorch runtime (CUDA 12.8 / sm_120). Prefer SDPA over
+# custom CUDA extensions at first deploy (see PLAN.md).
+base_image:
+  image: pytorch/pytorch:2.7.0-cuda12.8-cudnn9-runtime
+  python_executable_path: /opt/conda/bin/python
+
+requirements:
+  - transformers==4.56.1
+  - accelerate==1.10.1
+  - huggingface_hub==0.34.4
+  - qwen-vl-utils==0.0.11
+  - PyMuPDF==1.26.4
+  - pillow==11.3.0
+  - numpy==2.2.6
+  - requests==2.32.5
+
+resources:
+  accelerator: RTX_PRO_6000:1
+  use_gpu: true
+  cpu: "16"
+  memory: 116Gi
+
+runtime:
+  predict_concurrency: 1
+
+model_metadata:
+  example_model_input:
+    documents:
+      - id: paper-001
+        pdf_url: https://example.com/paper-001.pdf
+  model_id: rednote-hilab/dots.ocr
+  model_revision: c0111ce6bc07803dbc267932ffef0ae3a51dc951
+  render_dpi: 200
+  temporary_max_pages: 30
+  notes: >
+    Maximum documents per request is intentionally unset as a measured production
+    limit. A temporary safety ceiling of 50 is enforced in code until the first
+    deployment is profiled.
+
+environment_variables:
+  DOTS_OCR_MODEL_ID: rednote-hilab/dots.ocr
+  DOTS_OCR_MODEL_REVISION: c0111ce6bc07803dbc267932ffef0ae3a51dc951
+  DOTS_OCR_ATTN: sdpa
+  PDF_RENDER_DPI: "200"
+  PDF_MAX_PAGES: "30"
+  HF_HUB_ENABLE_HF_TRANSFER: "0"
+
+secrets:
+  hf_access_token: null
+
+system_packages:
+  - git
+  - libgl1
+  - libglib2.0-0

@@ -1,0 +1,3 @@
+# Placeholder: authorized Total Values evaluation documents are not present.
+# Add one JSON object per line with id, pdf_url, expected_page_count, and notes.
+# See inputs/README.md and eval/manifest.example.jsonl in the Truss folder.

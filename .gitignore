@@ -1,0 +1,30 @@
+# Ignore customer / sensitive evaluation material and local run outputs.
+inputs/eval/expected/**
+!inputs/eval/expected/.gitkeep
+!inputs/eval/expected/.gitignore
+
+artifacts/**
+!artifacts/.gitkeep
+!artifacts/.gitignore
+
+# Local PDF fixtures and temp files
+*.pdf
+!total-values-pdf-parser/tests/fixtures/.gitkeep
+
+# Python / tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env
+.mypy_cache/
+.ruff_cache/
+
+# Truss / Baseten local state
+.truss_cache/
+**/data/
+
+__pycache__/
+.pytest_cache/
+*.pyc
