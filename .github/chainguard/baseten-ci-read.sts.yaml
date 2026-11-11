@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/octo-sts/app/refs/heads/main/pkg/octosts/octosts.OrgTrustPolicy.json
+#
+# The monorepo's read credential for the private repositories its release image
+# builds clone. One token, instead of one repo-level policy per dependency and,
+# for dynamo, the stored BASETEN_MPCI_READ_KEY App key (App 5497773):
+#
+#   MOON_GITHUB_TOKEN_TAU2    basetenlabs/tau2-bench   b10-bench
+#   MOON_GITHUB_TOKEN_BFCL    basetenlabs/bfcl        b10-bench
+#   MOON_GITHUB_TOKEN_DYNAMO  basetenlabs/dynamo      tool-bank
+#   MOON_GITHUB_TOKEN_AIPERF  basetenlabs/aiperf      replay-runner
+#
+# Requested with `scope: basetenlabs, identity: baseten-ci-read`. An org-level
+# policy mints tokens for repositories other than the caller's, so this one is
+# deliberately narrow:
+#
+#   * Release workflows only: the two moon release workflows, run on master or
+#     development. Monorepo PR CI stays per-repository until an org admin
+#     confirms these four repositories are readable by everyone who can open a
+#     monorepo PR.
+#   * Read only: contents: read and nothing else. Never add a writing permission
+#     here. This policy reaches other repositories, so a write would be available
+#     to any workflow that can reach the identity.
+#   * repository_ids is never empty: an empty list means every repository the App
+#     can see, this policy repository included, and a federated identity could
+#     then rewrite the policy that constrains it.
+#
+# The token is an installation token of the shared octo-sts App, which is never
+# trusted as an identity: use it only where the capability is all that matters
+# (decision 0002, "never trust the octo-sts App", 2026-11-10, octo-sts project).
+#
+# The list is by ID on purpose (octo-sts README, "Scoping org-level policies by
+# repository ID"): IDs survive a rename, and a repository recreated under a
+# deleted repository's name does not inherit its access.
+issuer: https://token.actions.githubusercontent.com
+subject_pattern: repo:basetenlabs/baseten:ref:refs/heads/(master|development)
+claim_pattern:
+  # The workflow file the token's own run executed: the release workflows and no
+  # other, on those two branches only.
+  workflow_ref: basetenlabs/baseten/\.github/workflows/(moon_release|moon_manual_release)\.yaml@refs/heads/(master|development)
+  # The monorepo's immutable ID, so a repository that later takes over the name
+  # basetenlabs/baseten cannot exchange a token here.
+  repository_id: "206172215"
+
+permissions:
+  contents: read # clone the private repositories below
+
+repository_ids:
+  - 1287516919 # basetenlabs/tau2-bench
+  - 1053646660 # basetenlabs/bfcl
+  - 1280687590 # basetenlabs/aiperf
+  - 992309221 # basetenlabs/dynamo

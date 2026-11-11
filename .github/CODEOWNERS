@@ -1,0 +1,8 @@
+# Org-level octo-sts trust policies live in /.github/chainguard/. Each one can
+# mint short-lived GitHub tokens for repositories across the organization, and
+# the org's octo-sts deployments read them from this repository, so they are
+# reviewed by internal-platform and by nobody else.
+/.github/chainguard/ @basetenlabs/internal-platform
+
+# This file decides that, so it carries the same owner.
+/.github/CODEOWNERS @basetenlabs/internal-platform
